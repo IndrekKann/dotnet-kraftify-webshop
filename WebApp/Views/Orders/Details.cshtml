@@ -1,0 +1,52 @@
+@model WebApp.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+  
+<div class="row">
+  <div class="col-md-4 order-md-2 mb-4">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">@Resources.Views.Orders.ShoppingCart</span>
+    </h4>
+    <ul class="list-group mb-3">
+    @foreach (var item in Model.Products!)
+    {
+      <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+          <h6 class="my-0">@Html.DisplayFor(modelItem => item.Product!.Name)</h6>
+        </div>
+        <span class="text-muted">@Html.DisplayFor(modelItem => item.Product!.Price!.Cost) @Html.DisplayFor(modelItem => item.Product!.Price!.Currency!.Symbol)</span>
+      </li>
+    }
+      <li class="list-group-item d-flex justify-content-between">
+        <span>@Resources.Views.Orders.Total</span>
+        <strong>@Model.SubTotal €</strong>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-8 order-md-1">
+        
+    <h4 class="mb-3">@Resources.Views.Orders.ChooseBankAndLocation</h4>
+
+    <form asp-action="MakePayment" asp-route-orderId="@Model.Order!.Id">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label asp-for="Payment!.PaymentTypeId" class="control-label"></label>
+          <select asp-for="Payment!.PaymentTypeId" class="form-control" asp-items="Model.PaymentTypeSelectList"></select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label asp-for="Payment!.DestinationId" class="control-label"></label>
+          <select asp-for="Payment!.DestinationId" class="form-control" asp-items="Model.DestinationSelectList"></select>
+        </div>
+          
+        <input type="submit" value="@Resources.Views.Orders.MakePayment" class="btn btn-primary btn-lg btn-block" />
+          
+      </div>
+    </form>
+    
+  </div>
+</div>
+
+

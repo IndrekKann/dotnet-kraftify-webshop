@@ -1,0 +1,47 @@
+﻿@model WebApp.Areas.Admin.ViewModels.ShoppingCartViewModel
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Resources.Views.ShoppingCart.Picture</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Product</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Price</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Quantity</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Total</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>            
+                    @foreach (var item in Model.Products!)
+                    {
+                        <tr>
+                            <td><img src="~/uploads/@item.Product!.Image" width="50px" height="50px" alt="@item.Product!.Name"/> </td>
+                            <td>@Html.DisplayFor(modelItem => item.Product!.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Product!.Price!.Cost) @Html.DisplayFor(modelItem => item.Product!.Price!.Currency!.Symbol)</td>
+                            <td><input class="form-control" type="number" step="1" min="1" value="@Html.DisplayFor(modelItem => item.Quantity)"/></td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalCost) @Html.DisplayFor(modelItem => item.Product!.Price!.Currency!.Symbol) </td>
+                            <td>
+                                <a asp-action="RemoveFromShoppingCart" class="btn btn-sm btn-danger" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>@Resources.Views.ShoppingCart.Total</strong></td>
+                            <td><strong>@Model.SubTotal €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

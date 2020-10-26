@@ -1,0 +1,54 @@
+@model IEnumerable<BLL.App.DTO.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Resources.Views.Payments.ActiveOrders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUser!.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppUser!.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order!.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType!.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination!.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">@Resources.Views.Payments.ViewOrder</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

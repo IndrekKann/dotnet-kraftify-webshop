@@ -1,0 +1,31 @@
+﻿@model BLL.App.DTO.ProductInList
+
+<h4>ProductInList</h4>
+<hr />
+<dl class="row">
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.ShoppingCartId)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.ShoppingCartId)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.ProductId)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.ProductId)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Quantity)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Quantity)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.TotalCost)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.TotalCost)
+    </dd>
+</dl>
+

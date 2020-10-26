@@ -1,0 +1,30 @@
+﻿@model WebApp.Areas.Admin.ViewModels.ProductIndexViewModel
+
+<div class="container">
+  <div class="row">
+    
+          <div class="col-lg-3">
+            <h1 class="my-4">Kategooriad</h1>
+            <div class="list-group">
+		        @foreach (var item in Model.ProductTypes!.OrderBy(pt => pt.Name))
+		        {
+			        <a href="?searchType=@item.Id" class="list-group-item">@Html.DisplayFor(modelItem => item.Name)</a>
+		        }
+            </div>
+          </div>
+    
+    <div class="col-lg-9">
+      <div class="card mt-4">
+        <img class="card-img-top-detail img-fluid" src="~/uploads/@Model.Product!.Image" alt="@Model.Product!.Name">
+        <div class="card-body">
+          <h3 class="card-title">@Html.DisplayFor(model => model.Product!.Name) - @Html.DisplayFor(model => model.Product!.ProductType!.Name)</h3>
+          <h4>@Html.DisplayFor(model => model.Product!.Price!.Cost) @Html.DisplayFor(model => model.Product!.Price!.Currency!.Symbol)</h4>
+          <p>@Html.DisplayFor(model => model.Product!.Description)</p>
+          <div>
+          	  <a asp-action="AddToShoppingCart" class="btn btn-primary" asp-route-id="@Model.Product!.Id">@Resources.Views.Products.AddShoppingCart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

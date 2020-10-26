@@ -1,0 +1,12 @@
+@model WebApp.Areas.Admin.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <partial name="_DetailsDelete" model="@Model"></partial>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">@Resources.Views.Products.BackPayments</a>
+</div>

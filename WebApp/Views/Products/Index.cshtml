@@ -1,0 +1,141 @@
+@using Extensions
+@using System.Security.Claims
+@model WebApp.ViewModels.ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+<tbody>
+<!-- Page Content -->
+
+<div class="container">
+
+<div class="row">
+	<div class="col-lg-3">
+	  <h1 class="my-4">@Resources.Views.Products.Categories</h1>
+		<div class="list-group">
+			@foreach (var item in Model.ProductTypes!.OrderBy(pt => pt.Name))
+			{
+				<a href="?SearchType=@item.Id" class="list-group-item">@Html.DisplayFor(modelItem => item.Name)</a>
+			}
+		</div>
+
+		<br>
+
+  </div>
+  <!-- /.col-lg-3 -->
+
+  <div class="col-lg-9">
+	  <br>
+	  <div class="form-inline">
+		  @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+		  {
+			  @Html.TextBox("Search", null, new {@class = "form-control form-control-sm mr-3 w-75"})
+			  <input type="submit" value="@Resources.Views.Products.Search" class="btn btn-primary"/>
+			  
+			  <div class="form-inline">
+				  <h4 class="my-4">@Resources.Views.Products.Order</h4>
+				  <div class="m-4">
+					  @Html.DropDownListFor(x => x.Order, Model.OrderBySelectList, new {@class = "form-control"})
+				  </div>
+
+				  <h4 class="my-4">@Resources.Views.Products.ProductsPerPage</h4>
+				  <div class="m-4">
+					  @Html.DropDownListFor(x => x.Limit, Model.ProductsPerPageSelectList, new {@class = "form-control"})
+				  </div>
+			  </div>
+		  }
+	  </div>
+
+
+	  <!-- Loop over the products -->
+	  <div class="row">
+		  @foreach (var item in Model.Products!)
+		  {
+			  <div class="col-lg-4 col-md-6 mb-4">
+				  <div class="card h-100">
+					  @if (item.Image != null)
+					  {
+						  <a><img class="card-img-top" src="~/uploads/@item.Image" alt="@item.Name"></a>
+					  }
+					  else
+					  {
+						  <a><img class="card-img-top" src="http://placehold.it/700x400" alt="@Resources.Views.Products.Placeholder"></a>
+					  }
+						<div class="card-body">
+						  <h4 class="card-title">
+							  <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+						  </h4>
+						  <p>
+							  <a href="?SearchType=@item.ProductTypeId">@Html.DisplayFor(modelItem => item.ProductType!.Name)</a>
+						  </p>
+						  <p>
+							  @Html.DisplayFor(modelItem => item.Description)
+						  </p>
+						  <h4>
+							  @Html.DisplayFor(modelItem => item.Price!.Cost) @Html.DisplayFor(modelItem => item.Price!.Currency!.Symbol)
+						  </h4>
+					  </div>
+					  <div class="card-footer">
+						  @if (SignInManager.IsSignedIn(User))
+						  {
+							  <a asp-action="AddToShoppingCart" class="btn btn-primary" asp-route-id="@item.Id" asp-route-quantity="">@Resources.Views.Products.AddShoppingCart</a>
+						  }
+						  else
+						  {
+							  <a href="/Identity/Account/Login" class="btn btn-primary">@Resources.Views.Products.AddShoppingCart</a>
+						  }
+					  </div>
+				  </div>
+			  </div>
+
+		  }
+	  </div>
+	  
+	  <nav aria-label="Page navigation example">
+        <ul class="pagination">
+	        <li class="page-item">
+		        <a class="page-link" href="?Page=1" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			        <span class="sr-only">Previous</span>
+		        </a>
+	        </li>
+	        @foreach (var page in Model.Pages!)
+	        {
+		        if (page.Equals("..."))
+		        {
+			        <li class="page-item"><a class="page-link">...</a></li>
+		        }
+		        else
+		        {
+			        if (Model.CurrentURL != null && Model.CurrentURL.Length < 25)
+			        {
+				        <li class="page-item"><a class="page-link" href="?Page=@Html.DisplayName(page)">@Html.DisplayName(page)</a></li>
+			        }
+			        else
+			        {
+				        <li class="page-item"><a class="page-link" href="@Model.CurrentURL&amp;Page=@Html.DisplayName(page)">@Html.DisplayName(page)</a></li>
+			        }
+		        }
+	        }
+          <li class="page-item">
+            <a class="page-link" href="?Page=1" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+  </div>
+  <!-- /.col-lg-9 -->
+
+</div>
+<!-- /.row -->
+
+</div>
+<!-- /.container -->
+    </tbody>
+</table>

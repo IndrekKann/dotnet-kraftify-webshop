@@ -1,0 +1,21 @@
+﻿@model WebApp.Areas.Admin.ViewModels.ProductInListCreateEditViewModel
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="ProductInList!.ShoppingCartId" class="control-label"></label>
+    <select asp-for="ProductInList!.ShoppingCartId" class="form-control" asp-items="Model.ShoppingCartSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="ProductInList!.ProductId" class="control-label"></label>
+    <select asp-for="ProductInList!.ProductId" class="form-control" asp-items="Model.ProductSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="ProductInList!.Quantity" class="control-label"></label>
+    <input asp-for="ProductInList!.Quantity" class="form-control" />
+    <span asp-validation-for="ProductInList!.Quantity" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ProductInList!.TotalCost" class="control-label"></label>
+    <input asp-for="ProductInList!.TotalCost" class="form-control" />
+    <span asp-validation-for="ProductInList!.TotalCost" class="text-danger"></span>
+</div>

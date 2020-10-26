@@ -1,0 +1,38 @@
+﻿@model WebApp.Areas.Admin.ViewModels.LangStrTranslationViewModel
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.Culture" class="control-label"></label>
+    <input asp-for="LanguageStringTranslation.Culture" class="form-control" />
+    <span asp-validation-for="LanguageStringTranslation.Culture" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.Value" class="control-label"></label>
+    <input asp-for="LanguageStringTranslation.Value" class="form-control" />
+    <span asp-validation-for="LanguageStringTranslation.Value" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.LangStrId" class="control-label"></label>
+    <select asp-for="LanguageStringTranslation.LangStrId" class ="form-control" asp-items="Model.LanguageStringTranslationSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.CreatedBy" class="control-label"></label>
+    <input asp-for="LanguageStringTranslation.CreatedBy" class="form-control" />
+    <span asp-validation-for="LanguageStringTranslation.CreatedBy" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.CreatedAt" class="control-label"></label>
+    <input asp-for="LanguageStringTranslation.CreatedAt" class="form-control" />
+    <span asp-validation-for="LanguageStringTranslation.CreatedAt" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.DeletedBy" class="control-label"></label>
+    <input asp-for="LanguageStringTranslation.DeletedBy" class="form-control" />
+    <span asp-validation-for="LanguageStringTranslation.DeletedBy" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="LanguageStringTranslation.DeletedAt" class="control-label"></label>
+    <input asp-for="LanguageStringTranslation.DeletedAt" class="form-control" />
+    <span asp-validation-for="LanguageStringTranslation.DeletedAt" class="text-danger"></span>
+</div>
+

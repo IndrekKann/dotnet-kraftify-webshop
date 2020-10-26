@@ -1,0 +1,48 @@
+﻿@model Domain.App.LangStrTranslation
+
+<h4>Language string translation</h4>
+<hr />
+<dl class="row">
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Culture)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Culture)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Value)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Value)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.LangStr)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.LangStr!.Id)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.CreatedBy)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.CreatedAt)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.CreatedAt)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.DeletedBy)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.DeletedBy)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.DeletedAt)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.DeletedAt)
+    </dd>
+</dl>

@@ -1,0 +1,15 @@
+@model WebApp.Areas.Admin.ViewModels.ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    
+    <partial name="_DetailsDelete" model="@Model"></partial>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Product!.Id" class="btn btn-primary">@Resources.Views.Products.Edit</a> |
+    <a asp-action="Index" class="btn btn-primary">@Resources.Views.Products.Back</a>
+</div>

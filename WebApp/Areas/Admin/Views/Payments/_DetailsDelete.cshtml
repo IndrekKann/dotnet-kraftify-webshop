@@ -1,0 +1,65 @@
+﻿@model WebApp.Areas.Admin.ViewModels.ShoppingCartViewModel
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Resources.Views.ShoppingCart.Picture</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Product</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Price</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Quantity</th>
+                            <th scope="col">@Resources.Views.ShoppingCart.Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>            
+                    @foreach (var item in Model.Products!)
+                    {
+                        <tr>
+                            <td><img src="~/uploads/@item.Product!.Image" width="50px" height="50px" alt="@item.Product!.Name"/> </td>
+                            <td>@Html.DisplayFor(modelItem => item.Product!.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Product!.Price!.Cost) €</td>
+                            <td><input class="form-control" type="number" step="1" min="1" value="@Html.DisplayFor(modelItem => item.Quantity)"/></td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalCost) @Html.DisplayFor(modelItem => item.Product!.Price!.Currency!.Symbol)</td>
+                        </tr>
+                    }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>@Resources.Views.ShoppingCart.Total</strong></td>
+                            <td><strong>@Model.SubTotal  €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>@Resources.Views.Payments.Receiver</h3>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">@Resources.Views.Payments.Name</th>
+        <th scope="col">@Model.Payment!.AppUser!.FirstName @Model.Payment!.AppUser!.LastName</th>
+    </tr>
+    <tr>
+        <th scope="col">@Resources.Views.Payments.Phone</th>
+        <th scope="col">@Model.Payment!.AppUser!.Phone</th>
+    </tr>
+    <tr>
+        <th scope="col">@Resources.Views.Payments.Destination</th>
+        <th scope="col">@Model.Payment!.Destination!.Location</th>
+    </tr>
+    <tr>
+        <th scope="col">@Resources.Views.Payments.Bank</th>
+        <th scope="col">@Model.Payment!.PaymentType!.Name</th>
+    </tr>
+    </thead>
+</table>
